@@ -1,6 +1,14 @@
 package com.judge.configuration;
 
 
+import com.judge.repository.SingerRepository;
+import com.judge.repository.SongRepository;
+import com.judge.repository.impl.SingerRepositoryImpl;
+import com.judge.repository.impl.SongRepositoryImpl;
+import com.judge.service.SingerService;
+import com.judge.service.SongService;
+import com.judge.service.impl.SingerServiceImpl;
+import com.judge.service.impl.SongServiceImpl;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -29,19 +37,24 @@ import java.util.Properties;
 @EnableTransactionManagement
 @EnableJpaRepositories("com.judge.repository")
 public class ApplicationConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
-    //    @Bean
-//    public BlogService blogService(){
-//        return new BlogServiceImpl();
-//    }
-//    @Bean
-//    public CustomerRepository customerRepository(){
-//        return new CustomerRepositoryImpl();
-//    }
-//
-//    @Bean
-//    public CustomerService customerService(){
-//        return new CustomerServiecImpl();
-//    }
+    @Bean
+    public SingerRepository singerRepository() {
+        return new SingerRepositoryImpl();
+    }
+    @Bean
+    public SongRepository songRepository() {
+        return new SongRepositoryImpl();
+    }
+
+    @Bean
+    public SingerService singerService(){
+        return new SingerServiceImpl();
+    }
+
+    @Bean
+    public SongService songService(){
+        return new SongServiceImpl();
+    }
 
     private ApplicationContext applicationContext;
 

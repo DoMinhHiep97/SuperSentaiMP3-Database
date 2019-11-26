@@ -2,13 +2,26 @@ package com.judge.model;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.persistence.*;
+import java.util.Collection;
+
+@Entity
+@Table(name="Song")
 public class Song {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String nameSong;
     private String infoSong;
     private MultipartFile imageSong;
     private MultipartFile fileMp3Song;
     private String lyric;
-    private Long id;
+
+    @ManyToMany
+    @JoinTable(name = "Song_Singer",
+    joinColumns = @JoinColumn(name = "song_id"),
+    inverseJoinColumns = @JoinColumn(name = "singer_id"))
+    private Collection<Singer> singers;
 
     public Song() {
     }
@@ -21,6 +34,8 @@ public class Song {
         this.lyric = lyric;
         this.id = id;
     }
+
+
 
     public String getNameSong() {
         return nameSong;

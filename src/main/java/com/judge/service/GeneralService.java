@@ -1,10 +1,8 @@
-package com.judge.repository;
-
-import com.judge.model.Song;
+package com.judge.service;
 
 import java.util.List;
 
-public interface generalRepository<E> {
+public interface GeneralService<E> {
     List<E> findAll();
 
     E findById(Long id);

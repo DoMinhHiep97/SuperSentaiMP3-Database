@@ -2,10 +2,20 @@ package com.judge.model;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.persistence.*;
+import java.util.Collection;
+
+@Entity
+@Table(name = "Singer")
 public class Singer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String nameSinger;
     private MultipartFile imageSinger;
-    private Long id;
+
+    @ManyToMany(mappedBy = "singers")
+    private Collection<Song> songs;
 
     public Singer() {
     }
