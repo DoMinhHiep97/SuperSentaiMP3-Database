@@ -3,12 +3,16 @@ package com.judge.configuration;
 
 import com.judge.repository.SingerRepository;
 import com.judge.repository.SongRepository;
+import com.judge.repository.UserRepository;
 import com.judge.repository.impl.SingerRepositoryImpl;
 import com.judge.repository.impl.SongRepositoryImpl;
+import com.judge.repository.impl.UserRepositoryImpl;
 import com.judge.service.SingerService;
 import com.judge.service.SongService;
+import com.judge.service.UserService;
 import com.judge.service.impl.SingerServiceImpl;
 import com.judge.service.impl.SongServiceImpl;
+import com.judge.service.impl.UserServiceImpl;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -54,6 +58,16 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
     @Bean
     public SongService songService(){
         return new SongServiceImpl();
+    }
+
+    @Bean
+    public UserRepository userRepository(){
+        return new UserRepositoryImpl();
+    }
+
+    @Bean
+    public UserService userService(){
+        return new UserServiceImpl();
     }
 
     private ApplicationContext applicationContext;

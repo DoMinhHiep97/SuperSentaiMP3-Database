@@ -3,30 +3,29 @@ package com.judge.model;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Set;
 
 @Entity
-@Table(name="Song")
+@Table(name="song")
 public class Song {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nameSong;
     private String infoSong;
-    private MultipartFile imageSong;
-    private MultipartFile fileMp3Song;
+    private String imageSong;
+    private String fileMp3Song;
     private String lyric;
 
-    @ManyToMany
-    @JoinTable(name = "Song_Singer",
-    joinColumns = @JoinColumn(name = "song_id"),
-    inverseJoinColumns = @JoinColumn(name = "singer_id"))
-    private Collection<Singer> singers;
+    @ManyToMany(mappedBy = "songs")
+    private Set<Singer> singers;
 
     public Song() {
     }
 
-    public Song(String nameSong, String infoSong, MultipartFile imageSong, MultipartFile fileMp3Song, String lyric, Long id) {
+    public Song(String nameSong, String infoSong, String imageSong, String fileMp3Song, String lyric, Long id) {
         this.nameSong = nameSong;
         this.infoSong = infoSong;
         this.imageSong = imageSong;
@@ -53,19 +52,19 @@ public class Song {
         this.infoSong = infoSong;
     }
 
-    public MultipartFile getImageSong() {
+    public String getImageSong() {
         return imageSong;
     }
 
-    public void setImageSong(MultipartFile imageSong) {
+    public void setImageSong(String imageSong) {
         this.imageSong = imageSong;
     }
 
-    public MultipartFile getFileMp3Song() {
+    public String getFileMp3Song() {
         return fileMp3Song;
     }
 
-    public void setFileMp3Song(MultipartFile fileMp3Song) {
+    public void setFileMp3Song(String fileMp3Song) {
         this.fileMp3Song = fileMp3Song;
     }
 
