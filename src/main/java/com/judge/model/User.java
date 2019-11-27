@@ -1,34 +1,56 @@
 package com.judge.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name ="Users")
+@Table(name ="Users",uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"username"}),
+        @UniqueConstraint(columnNames = {
+                "emil"
+        })
+})
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id ;
-    private String firstName;
-    private String lastName;
-    private String account;
-    private String passWord;
-    private String addressEmail;
-    private String dateBirthday;
-    private String gender;
-    private String role_id;
 
-    public User() {
+    private String avatarUrl;
+    @NotBlank
+    private String name;
+
+    @NotBlank
+    private String userName;
+
+    @NotBlank
+    private String email;
+
+    @NotBlank
+    private String passWord;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
+    public User(String signUpRequestName, String name, String userName, String email, String encode) {
+        this.name = signUpRequestName;
+        this.userName = userName;
+        this.email = email;
+        this.passWord = encode;
+        this.avatarUrl = name;
     }
 
-    public User(String firstName, String lastName, String account, String passWord, String addressEmail, String dateBirthday, String gender) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.account = account;
+    public User(String avatarUrl, @NotBlank String name, @NotBlank String userName, @NotBlank String email, @NotBlank String passWord, Set<Role> roles) {
+        this.avatarUrl = avatarUrl;
+        this.name = name;
+        this.userName = userName;
+        this.email = email;
         this.passWord = passWord;
-        this.addressEmail = addressEmail;
-        this.dateBirthday = dateBirthday;
-        this.gender = gender;
+        this.roles = roles;
     }
 
     public Long getId() {
@@ -39,28 +61,36 @@ public class User {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getAvatarUrl() {
+        return avatarUrl;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getName() {
+        return name;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getAccount() {
-        return account;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setAccount(String account) {
-        this.account = account;
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassWord() {
@@ -71,41 +101,11 @@ public class User {
         this.passWord = passWord;
     }
 
-    public String getAddressEmail() {
-        return addressEmail;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setAddressEmail(String addressEmail) {
-        this.addressEmail = addressEmail;
-    }
-
-    public String getDateBirthday() {
-        return dateBirthday;
-    }
-
-    public void setDateBirthday(String dateBirthday) {
-        this.dateBirthday = dateBirthday;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "idUser=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", account='" + account + '\'' +
-                ", passWord='" + passWord + '\'' +
-                ", addressEmail='" + addressEmail + '\'' +
-                ", dateBirthday=" + dateBirthday +
-                ", gender='" + gender + '\'' +
-                '}';
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

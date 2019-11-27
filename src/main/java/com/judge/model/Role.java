@@ -1,5 +1,7 @@
 package com.judge.model;
 
+import org.hibernate.annotations.NaturalId;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -9,16 +11,16 @@ public class Role {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private String id;
-    private String name;
-    @OneToMany(targetEntity = User.class)
-    private List<User> users;
 
+    @Enumerated(EnumType.STRING)
+    @NaturalId
+    @Column(length = 60)
+    private String roleName;
     public Role() {
     }
 
-    public Role(String name, List<User> users) {
-        this.name = name;
-        this.users = users;
+    public Role(String roleName) {
+        this.roleName = roleName;
     }
 
     public String getId() {
@@ -29,19 +31,11 @@ public class Role {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 }
