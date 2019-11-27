@@ -1,14 +1,7 @@
 package com.judge.configuration;
 
 
-import com.judge.repository.RoleRepository;
-import com.judge.repository.RoleRepositoryImpl;
 import com.judge.repository.UserRepository;
-import com.judge.repository.UserRepositoryImpl;
-import com.judge.service.IRoleService;
-import com.judge.service.IUserService;
-import com.judge.service.RoleServiceImpl;
-import com.judge.service.UserServiceImpl;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
