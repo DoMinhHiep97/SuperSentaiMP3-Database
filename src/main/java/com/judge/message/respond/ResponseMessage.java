@@ -1,4 +1,4 @@
-package com.judge.message.respond.ResponseMessage;
+package com.judge.message.respond;
 
 public class ResponseMessage {
     private String message;

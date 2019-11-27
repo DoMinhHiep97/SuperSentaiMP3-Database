@@ -1,3 +1,5 @@
+package com.judge.security.services;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.judge.model.User;
 import org.springframework.security.core.GrantedAuthority;
@@ -9,7 +11,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class UserPrinciple implements UserDetails {
+public class UserPrinciple   implements UserDetails {
     private static final long serialVersionUID = 1L;
 
     private Long id;

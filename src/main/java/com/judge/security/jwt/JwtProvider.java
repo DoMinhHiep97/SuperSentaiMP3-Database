@@ -1,5 +1,6 @@
 package com.judge.security.jwt;
 
+import com.judge.security.services.UserPrinciple;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

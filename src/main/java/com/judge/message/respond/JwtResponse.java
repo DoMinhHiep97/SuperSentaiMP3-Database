@@ -1,4 +1,4 @@
-package com.judge.message.respond.JwResponse;
+package com.judge.message.respond;
 
 import org.springframework.security.core.GrantedAuthority;
 
