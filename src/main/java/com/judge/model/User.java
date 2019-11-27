@@ -14,13 +14,14 @@ public class User {
     private String account;
     private String passWord;
     private String addressEmail;
-    private Date dateBirthday;
+    private String dateBirthday;
     private String gender;
+    private String role_id;
 
     public User() {
     }
 
-    public User(String firstName, String lastName, String account, String passWord, String addressEmail, Date dateBirthday, String gender) {
+    public User(String firstName, String lastName, String account, String passWord, String addressEmail, String dateBirthday, String gender) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.account = account;
@@ -78,11 +79,11 @@ public class User {
         this.addressEmail = addressEmail;
     }
 
-    public Date getDateBirthday() {
+    public String getDateBirthday() {
         return dateBirthday;
     }
 
-    public void setDateBirthday(Date dateBirthday) {
+    public void setDateBirthday(String dateBirthday) {
         this.dateBirthday = dateBirthday;
     }
 

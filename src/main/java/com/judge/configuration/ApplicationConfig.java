@@ -1,6 +1,14 @@
 package com.judge.configuration;
 
 
+import com.judge.repository.RoleRepository;
+import com.judge.repository.RoleRepositoryImpl;
+import com.judge.repository.UserRepository;
+import com.judge.repository.UserRepositoryImpl;
+import com.judge.service.IRoleService;
+import com.judge.service.IUserService;
+import com.judge.service.RoleServiceImpl;
+import com.judge.service.UserServiceImpl;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -33,17 +41,27 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
 //    public BlogService blogService(){
 //        return new BlogServiceImpl();
 //    }
-//    @Bean
-//    public CustomerRepository customerRepository(){
-//        return new CustomerRepositoryImpl();
-//    }
+    @Bean
+    public UserRepository userRepository(){
+        return new UserRepositoryImpl();
+    }
 //
-//    @Bean
-//    public CustomerService customerService(){
-//        return new CustomerServiecImpl();
-//    }
+    @Bean
+    public IUserService UserService(){
+        return new UserServiceImpl();
+    }
+//Role
+@Bean
+public IRoleService RoleService(){
+    return new RoleServiceImpl();
+}
+//
+@Bean
+public RoleRepository roleRepository(){
+    return new RoleRepositoryImpl();
+}
 
-    private ApplicationContext applicationContext;
+private ApplicationContext applicationContext;
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
@@ -101,9 +119,9 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/fuck");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/customers");
         dataSource.setUsername( "root" );
-        dataSource.setPassword( "cophaothu2" );
+        dataSource.setPassword( "hieuthuy12" );
         return dataSource;
     }
 
